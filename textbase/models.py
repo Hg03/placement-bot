@@ -18,6 +18,7 @@ class OpenAI:
         assert cls.api_key is not None, "OpenAI API key is not set"
         openai.api_key = cls.api_key
 
+    
         response = openai.ChatCompletion.create(
             model=model,
             messages=[
