@@ -3,6 +3,7 @@ from textbase.message import Message
 from textbase import models
 import os
 from typing import List
+from langchain.prompts import SystemMessagePromptTemplate
 
 # Load your OpenAI API key
 models.OpenAI.api_key = "YOUR_API_KEY"
@@ -10,8 +11,8 @@ models.OpenAI.api_key = "YOUR_API_KEY"
 # models.OpenAI.api_key = os.getenv("OPENAI_API_KEY")
 
 # Prompt for GPT-3.5 Turbo
-SYSTEM_PROMPT = """You are chatting with an AI. There are no specific prefixes for responses, so you can ask or talk about anything you like. The AI will respond in a natural, conversational manner. Feel free to start the conversation with any question or topic, and let's have a pleasant chat!
-"""
+SYSTEM_PROMPT = SystemMessagePromptTemplate.from_template(template="""Answer the question as truthfully as possible using the provided context, 
+and if the answer is not contained within the text below, say 'I don't know'""")
 
 
 @textbase.chatbot("talking-bot")
